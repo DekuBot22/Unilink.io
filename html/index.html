@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UniLink - Inicio</title>
+    <link rel="icon" type="image/png" href="../img/LogoProyecto.png">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <a href="index.html" class="logo" style="text-decoration:none;color:white;display:flex;align-items:center;gap:10px">
+                <img src="../img/LogoProyecto.png" alt="Logo UniLink" class="logo-icon logo-icon-img">
+                <div class="logo-text">
+                    <h1>UniLink</h1>
+                    <span>Universidad del Magdalena</span>
+                </div>
+            </a>
+        </div>
+        <nav>
+            <a href="index.html" class="active">Inicio</a>
+            <a href="tutores.html">Tutores</a>
+            <a href="ser-tutor.html">Ser Tutor</a>
+            <a href="perfil-tutor.html">Perfil</a>
+            <a href="index.html#contacto" class="btn-contacto">Contacto</a>
+            <button type="button" class="btn-login" data-open-auth>Iniciar sesión</button>
+        </nav>
+    </header>
+
+    <div class="modal-overlay hidden" id="authModalOverlay" role="dialog" aria-modal="true" aria-labelledby="authModalTitle">
+        <div class="modal auth-modal">
+            <button class="modal-close" type="button" data-close-auth aria-label="Cerrar">✕</button>
+
+            <section class="auth-view" data-auth-view="login">
+                <h3 id="authModalTitle">Iniciar sesión</h3>
+                <p class="auth-subtitle">Accede con tu correo y contraseña para continuar.</p>
+                <form id="loginForm" class="auth-form">
+                    <div class="form-group">
+                        <label for="loginEmail">Correo institucional *</label>
+                        <input id="loginEmail" type="email" placeholder="nombre@unimagdalena.edu.co" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="loginPassword">Contraseña *</label>
+                        <input id="loginPassword" type="password" minlength="6" placeholder="Ingresa tu contraseña" required>
+                    </div>
+                    <button type="submit" class="btn-submit">Entrar</button>
+                </form>
+                <div class="auth-links">
+                    <button type="button" class="auth-link" data-auth-target="recover">¿Olvidaste tu contraseña?</button>
+                    <button type="button" class="auth-link" data-auth-target="register">Crear cuenta</button>
+                </div>
+            </section>
+
+            <section class="auth-view hidden" data-auth-view="register">
+                <h3>Crear cuenta</h3>
+                <p class="auth-subtitle">Regístrate para buscar tutorías o brindar apoyo académico.</p>
+                <form id="registerForm" class="auth-form">
+                    <div class="form-group">
+                        <label for="registerName">Nombre completo *</label>
+                        <input id="registerName" type="text" placeholder="Tu nombre completo" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="registerEmail">Correo *</label>
+                        <input id="registerEmail" type="email" placeholder="nombre@unimagdalena.edu.co" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="registerPassword">Contraseña *</label>
+                        <input id="registerPassword" type="password" minlength="6" placeholder="Mínimo 6 caracteres" required>
+                    </div>
+                    <button type="submit" class="btn-submit">Registrarme</button>
+                </form>
+                <div class="auth-links auth-links-single">
+                    <button type="button" class="auth-link" data-auth-target="login">Ya tengo cuenta</button>
+                </div>
+            </section>
+
+            <section class="auth-view hidden" data-auth-view="recover">
+                <h3>Recuperar contraseña</h3>
+                <p class="auth-subtitle">Te enviaremos un enlace de recuperación a tu correo.</p>
+                <form id="recoverForm" class="auth-form">
+                    <div class="form-group">
+                        <label for="recoverEmail">Correo registrado *</label>
+                        <input id="recoverEmail" type="email" placeholder="nombre@unimagdalena.edu.co" required>
+                    </div>
+                    <button type="submit" class="btn-submit">Enviar enlace</button>
+                </form>
+                <div class="auth-links auth-links-single">
+                    <button type="button" class="auth-link" data-auth-target="login">Volver al inicio de sesión</button>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-content">
+            <h2>Aprende con quienes ya pasaron por lo mismo</h2>
+            <p>Conectamos estudiantes que necesitan apoyo académico con tutores voluntarios de la Universidad del Magdalena. 100% gratuito, entre compañeros.</p>
+            <div class="hero-buttons">
+                <a href="tutores.html" class="btn-primary">🔍 Buscar tutor</a>
+                <a href="ser-tutor.html" class="btn-secondary">Quiero ser tutor</a>
+            </div>
+        </div>
+        <div class="hero-image" id="heroCarousel">
+            <button class="carousel-btn carousel-prev" type="button" aria-label="Imagen anterior">&#10094;</button>
+            <img src="../img/estudianteUnimag.webp" alt="Estudiantes UniLink" class="hero-slide is-active">
+            <img src="../img/estudianteUnimag2.webp" alt="Tutoria entre estudiantes" class="hero-slide">
+            <img src="../img/estudianteUnimag3.jpg" alt="Estudiantes Universidad del Magdalena" class="hero-slide">
+            <button class="carousel-btn carousel-next" type="button" aria-label="Imagen siguiente">&#10095;</button>
+            <div class="carousel-dots" aria-hidden="true">
+                <span class="carousel-dot is-active"></span>
+                <span class="carousel-dot"></span>
+                <span class="carousel-dot"></span>
+            </div>
+        </div>
+    </section>
+
+    <!-- COMO FUNCIONA -->
+    <section class="como-funciona">
+        <h2>¿Cómo funciona?</h2>
+        <div class="pasos-container">
+            <div class="paso-card">
+                <div class="paso-icon">📝</div>
+                <h3>1. Regístrate</h3>
+                <p>Crea tu perfil como estudiante que busca apoyo o como tutor voluntario que quiere ayudar.</p>
+            </div>
+            <div class="paso-card">
+                <div class="paso-icon">🤝</div>
+                <h3>2. Conecta</h3>
+                <p>Encuentra un tutor en la materia que necesitas o únete a un grupo de estudio de tu carrera.</p>
+            </div>
+            <div class="paso-card">
+                <div class="paso-icon">📚</div>
+                <h3>3. Aprende</h3>
+                <p>Programa tus sesiones de estudio, resuelve tus dudas y mejora tu rendimiento académico.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- MATERIAS -->
+    <section class="materias">
+        <h2>Materias con más demanda</h2>
+        <div class="materias-grid">
+            <div class="materia-card" onclick="location.href='tutores.html?materia=calculo'">
+                <h4>📐 Cálculo I</h4>
+                <span>45 tutores</span>
+            </div>
+            <div class="materia-card" onclick="location.href='tutores.html?materia=fisica'">
+                <h4>⚡ Física I</h4>
+                <span>32 tutores</span>
+            </div>
+            <div class="materia-card" onclick="location.href='tutores.html?materia=programacion'">
+                <h4>💻 Programación</h4>
+                <span>28 tutores</span>
+            </div>
+            <div class="materia-card" onclick="location.href='tutores.html?materia=quimica'">
+                <h4>🧪 Química General</h4>
+                <span>25 tutores</span>
+            </div>
+            <div class="materia-card" onclick="location.href='tutores.html?materia=estadistica'">
+                <h4>📊 Estadística</h4>
+                <span>22 tutores</span>
+            </div>
+        </div>
+        <a href="tutores.html" class="ver-todas">Ver todas las materias →</a>
+    </section>
+
+    <!-- TUTORES DESTACADOS -->
+    <section class="tutores">
+        <h2>Tutores destacados</h2>
+        <div class="tutores-grid">
+            <div class="tutor-card">
+                <div class="tutor-avatar">ML</div>
+                <h4>María López</h4>
+                <p class="carrera">Ing. de Sistemas - 7mo semestre</p>
+                <p class="rating">⭐⭐⭐⭐⭐ 4.9</p>
+                <p class="materias-tutor">Cálculo, Programación, Álgebra</p>
+                <a href="perfil-tutor.html?id=1" class="btn-perfil">Ver perfil</a>
+            </div>
+            <div class="tutor-card">
+                <div class="tutor-avatar">CP</div>
+                <h4>Carlos Pérez</h4>
+                <p class="carrera">Medicina - 5to semestre</p>
+                <p class="rating">⭐⭐⭐⭐⭐ 4.8</p>
+                <p class="materias-tutor">Química, Biología, Anatomía</p>
+                <a href="perfil-tutor.html?id=2" class="btn-perfil">Ver perfil</a>
+            </div>
+            <div class="tutor-card">
+                <div class="tutor-avatar">AG</div>
+                <h4>Ana Gómez</h4>
+                <p class="carrera">Derecho - 6to semestre</p>
+                <p class="rating">⭐⭐⭐⭐⭐ 4.9</p>
+                <p class="materias-tutor">Redacción, Constitucional</p>
+                <a href="perfil-tutor.html?id=3" class="btn-perfil">Ver perfil</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- BENEFICIOS -->
+    <section class="beneficios">
+        <h2>¿Por qué UniLink?</h2>
+        <div class="beneficios-grid">
+            <div class="beneficio-item">
+                <div class="check">✅</div>
+                <h4>100% Gratuito</h4>
+                <p>Sin costos para los estudiantes. El apoyo académico no debe tener barreras económicas.</p>
+            </div>
+            <div class="beneficio-item">
+                <div class="check">✅</div>
+                <h4>Entre estudiantes</h4>
+                <p>Aprende de quienes ya aprobaron las materias y entienden tus dificultades.</p>
+            </div>
+            <div class="beneficio-item">
+                <div class="check">✅</div>
+                <h4>Horarios flexibles</h4>
+                <p>Sesiones que se adaptan a tu disponibilidad, incluso si trabajas o tienes poco tiempo.</p>
+            </div>
+            <div class="beneficio-item">
+                <div class="check">✅</div>
+                <h4>Sin pena de preguntar</h4>
+                <p>Un espacio seguro y confidencial donde todas las dudas son válidas.</p>
+            </div>
+            <div class="beneficio-item">
+                <div class="check">✅</div>
+                <h4>Grupos de estudio</h4>
+                <p>Únete a grupos de tu carrera y aprende de forma colaborativa.</p>
+            </div>
+            <div class="beneficio-item">
+                <div class="check">✅</div>
+                <h4>Respaldo institucional</h4>
+                <p>Iniciativa apoyada por la Universidad del Magdalena.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta">
+        <div class="cta-box">
+            <h2>¿Listo para mejorar tu rendimiento académico?</h2>
+            <div class="cta-buttons">
+                <a href="ser-tutor.html" class="btn-cta-primary">Registrarme ahora</a>
+                <a href="tutores.html" class="btn-cta-secondary">Buscar tutores</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer id="contacto">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <h3>🎓 UniLink</h3>
+                <p>Red de apoyo académico entre estudiantes de la Universidad del Magdalena.</p>
+                <br>
+                <p>© 2026 Todos los derechos reservados</p>
+            </div>
+            <div class="footer-section">
+                <h4>Enlaces</h4>
+                <a href="index.html">Inicio</a>
+                <a href="tutores.html">Tutores</a>
+                <a href="ser-tutor.html">Ser Tutor</a>
+                <a href="perfil-tutor.html">Ver Perfil</a>
+            </div>
+            <div class="footer-section">
+                <h4>Contacto</h4>
+                <p>📧 apoyo@unimagdalena.edu.co</p>
+                <p>📍 Santa Marta, Colombia</p>
+                <p>🏛️ Universidad del Magdalena</p>
+            </div>
+            <div class="footer-section">
+                <h4>Síguenos</h4>
+                <div class="social-icons">
+                    <span title="Facebook">📘</span>
+                    <span title="Instagram">📸</span>
+                    <span title="Twitter">🐦</span>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>Hecho con ❤️ por estudiantes para estudiantes</p>
+        </div>
+    </footer>
+
+    <script src="../js/script.js"></script>
+</body>
+</html>

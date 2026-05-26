@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ser Tutor - UniLink</title>
+    <link rel="icon" type="image/png" href="../img/LogoProyecto.png">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <a href="index.html" style="text-decoration:none;color:white;display:flex;align-items:center;gap:10px">
+                <img src="../img/LogoProyecto.png" alt="Logo UniLink" class="logo-icon logo-icon-img">
+                <div class="logo-text">
+                    <h1>UniLink</h1>
+                    <span>Universidad del Magdalena</span>
+                </div>
+            </a>
+        </div>
+        <nav>
+            <a href="index.html">Inicio</a>
+            <a href="tutores.html">Tutores</a>
+            <a href="ser-tutor.html" class="active">Ser Tutor</a>
+            <a href="perfil-tutor.html">Perfil</a>
+            <a href="index.html#contacto" class="btn-contacto">Contacto</a>
+            <button type="button" class="btn-login" data-open-auth>Iniciar sesión</button>
+        </nav>
+    </header>
+
+    <div class="modal-overlay hidden" id="authModalOverlay" role="dialog" aria-modal="true" aria-labelledby="authModalTitle">
+        <div class="modal auth-modal">
+            <button class="modal-close" type="button" data-close-auth aria-label="Cerrar">✕</button>
+
+            <section class="auth-view" data-auth-view="login">
+                <h3 id="authModalTitle">Iniciar sesión</h3>
+                <p class="auth-subtitle">Accede con tu correo y contraseña para continuar.</p>
+                <form id="loginForm" class="auth-form">
+                    <div class="form-group">
+                        <label for="loginEmail">Correo institucional *</label>
+                        <input id="loginEmail" type="email" placeholder="nombre@unimagdalena.edu.co" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="loginPassword">Contraseña *</label>
+                        <input id="loginPassword" type="password" minlength="6" placeholder="Ingresa tu contraseña" required>
+                    </div>
+                    <button type="submit" class="btn-submit">Entrar</button>
+                </form>
+                <div class="auth-links">
+                    <button type="button" class="auth-link" data-auth-target="recover">¿Olvidaste tu contraseña?</button>
+                    <button type="button" class="auth-link" data-auth-target="register">Crear cuenta</button>
+                </div>
+            </section>
+
+            <section class="auth-view hidden" data-auth-view="register">
+                <h3>Crear cuenta</h3>
+                <p class="auth-subtitle">Regístrate para buscar tutorías o brindar apoyo académico.</p>
+                <form id="registerForm" class="auth-form">
+                    <div class="form-group">
+                        <label for="registerName">Nombre completo *</label>
+                        <input id="registerName" type="text" placeholder="Tu nombre completo" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="registerEmail">Correo *</label>
+                        <input id="registerEmail" type="email" placeholder="nombre@unimagdalena.edu.co" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="registerPassword">Contraseña *</label>
+                        <input id="registerPassword" type="password" minlength="6" placeholder="Mínimo 6 caracteres" required>
+                    </div>
+                    <button type="submit" class="btn-submit">Registrarme</button>
+                </form>
+                <div class="auth-links auth-links-single">
+                    <button type="button" class="auth-link" data-auth-target="login">Ya tengo cuenta</button>
+                </div>
+            </section>
+
+            <section class="auth-view hidden" data-auth-view="recover">
+                <h3>Recuperar contraseña</h3>
+                <p class="auth-subtitle">Te enviaremos un enlace de recuperación a tu correo.</p>
+                <form id="recoverForm" class="auth-form">
+                    <div class="form-group">
+                        <label for="recoverEmail">Correo registrado *</label>
+                        <input id="recoverEmail" type="email" placeholder="nombre@unimagdalena.edu.co" required>
+                    </div>
+                    <button type="submit" class="btn-submit">Enviar enlace</button>
+                </form>
+                <div class="auth-links auth-links-single">
+                    <button type="button" class="auth-link" data-auth-target="login">Volver al inicio de sesión</button>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- HERO -->
+    <section class="tutor-hero">
+        <h2>🌟 Conviértete en Tutor Voluntario</h2>
+        <p>Comparte tu conocimiento, gana experiencia y ayuda a tus compañeros a salir adelante.</p>
+        <a href="#postulacion" class="btn-primary">Postularme ahora</a>
+    </section>
+
+    <!-- BENEFICIOS DE SER TUTOR -->
+    <section class="beneficios-tutor">
+        <h2>¿Qué ganas siendo tutor?</h2>
+        <div class="beneficios-tutor-grid">
+            <div class="beneficio-tutor-card">
+                <div class="bicon">📜</div>
+                <h4>Certificado oficial</h4>
+                <p>Recibe un certificado de la Universidad del Magdalena por tu labor voluntaria.</p>
+            </div>
+            <div class="beneficio-tutor-card">
+                <div class="bicon">💼</div>
+                <h4>Experiencia laboral</h4>
+                <p>Refuerza tu hoja de vida con experiencia docente y trabajo colaborativo.</p>
+            </div>
+            <div class="beneficio-tutor-card">
+                <div class="bicon">🧠</div>
+                <h4>Refuerza tu conocimiento</h4>
+                <p>Enseñar es la mejor forma de aprender y afianzar lo que sabes.</p>
+            </div>
+            <div class="beneficio-tutor-card">
+                <div class="bicon">🤝</div>
+                <h4>Red de contactos</h4>
+                <p>Conecta con estudiantes de diferentes carreras y semestres.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- PASOS -->
+    <section class="pasos-tutor">
+        <h2>¿Cómo ser tutor?</h2>
+        <div class="pasos-timeline">
+            <div class="paso-timeline">
+                <div class="paso-num">1</div>
+                <div class="paso-info">
+                    <h4>📝 Postúlate</h4>
+                    <p>Completa el formulario con tu información académica y las materias en las que puedes ayudar.</p>
+                </div>
+            </div>
+            <div class="paso-timeline">
+                <div class="paso-num">2</div>
+                <div class="paso-info">
+                    <h4>✅ Verificación</h4>
+                    <p>El equipo de UniLink verifica tu historial académico. Necesitas haber aprobado las materias con 3.5 o más.</p>
+                </div>
+            </div>
+            <div class="paso-timeline">
+                <div class="paso-num">3</div>
+                <div class="paso-info">
+                    <h4>🎓 Inducción</h4>
+                    <p>Asiste a una breve sesión virtual donde aprenderás cómo dar tutorías efectivas.</p>
+                </div>
+            </div>
+            <div class="paso-timeline">
+                <div class="paso-num">4</div>
+                <div class="paso-info">
+                    <h4>🚀 ¡Empieza!</h4>
+                    <p>Tu perfil ya estará visible y los estudiantes podrán agendar sesiones contigo.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- REQUISITOS -->
+    <section class="requisitos">
+        <h2>Requisitos</h2>
+        <div class="requisitos-grid">
+            <div class="req-item">✅ Ser estudiante activo de la Unimagdalena</div>
+            <div class="req-item">✅ Haber aprobado la materia con nota ≥ 3.5</div>
+            <div class="req-item">✅ Tener mínimo 3er semestre</div>
+            <div class="req-item">✅ Disponibilidad de al menos 2 horas semanales</div>
+            <div class="req-item">✅ Compromiso con la puntualidad y el respeto</div>
+            <div class="req-item">✅ Conexión a internet estable (sesiones virtuales)</div>
+        </div>
+    </section>
+
+    <!-- FORMULARIO -->
+    <section class="postulacion" id="postulacion">
+        <div class="form-container">
+            <h2>📋 Formulario de Postulación</h2>
+            <p>Completa todos los campos para iniciar tu proceso</p>
+
+            <div class="stepper">
+                <div class="step active" id="stepTab1">1. Datos personales</div>
+                <div class="step" id="stepTab2">2. Datos académicos</div>
+                <div class="step" id="stepTab3">3. Materias</div>
+                <div class="step" id="stepTab4">4. Disponibilidad</div>
+            </div>
+
+            <form id="postulacionForm" onsubmit="enviarPostulacion(event)">
+
+                <!-- PASO 1 -->
+                <div class="form-step" id="formStep1">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Nombre completo *</label>
+                            <input id="tutorNombre" type="text" placeholder="Tu nombre completo" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Código estudiantil *</label>
+                            <input id="tutorCodigo" type="text" inputmode="numeric" maxlength="10" pattern="\d{1,10}" placeholder="Ej: 2020232010" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Correo institucional *</label>
+                            <input id="tutorCorreo" type="email" placeholder="nombre@unimagdalena.edu.co" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Teléfono / WhatsApp *</label>
+                            <input id="tutorTelefono" type="tel" inputmode="numeric" maxlength="10" pattern="\d{1,10}" placeholder="3001234567" required>
+                        </div>
+                    </div>
+                    <div class="step-buttons">
+                        <button type="button" class="btn-next" onclick="nextStep(1)">Siguiente →</button>
+                    </div>
+                </div>
+
+                <!-- PASO 2 -->
+                <div class="form-step hidden" id="formStep2">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Carrera *</label>
+                            <select id="tutorCarrera" required>
+                                <option value="">Selecciona tu carrera</option>
+                                <option>Ingeniería de Sistemas</option>
+                                <option>Ingeniería Civil</option>
+                                <option>Medicina</option>
+                                <option>Derecho</option>
+                                <option>Administración de Empresas</option>
+                                <option>Biología</option>
+                                <option>Contaduría Pública</option>
+                                <option>Psicología</option>
+                                <option>Enfermería</option>
+                                <option>Otra</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Semestre actual *</label>
+                            <select id="tutorSemestre" required>
+                                <option value="">Semestre</option>
+                                <option>3er semestre</option>
+                                <option>4to semestre</option>
+                                <option>5to semestre</option>
+                                <option>6to semestre</option>
+                                <option>7mo semestre</option>
+                                <option>8vo semestre</option>
+                                <option>9no semestre</option>
+                                <option>10mo semestre</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Promedio académico actual *</label>
+                        <input id="tutorPromedio" type="number" step="1" min="350" max="500" placeholder="Ej: 420" required>
+                    </div>
+                    <div class="form-group">
+                        <label>¿Por qué quieres ser tutor? *</label>
+                        <textarea id="tutorMotivacion" rows="4" placeholder="Cuéntanos tu motivación..." required></textarea>
+                    </div>
+                    <div class="step-buttons">
+                        <button type="button" class="btn-back" onclick="prevStep(2)">← Anterior</button>
+                        <button type="button" class="btn-next" onclick="nextStep(2)">Siguiente →</button>
+                    </div>
+                </div>
+
+                <!-- PASO 3 -->
+                <div class="form-step hidden" id="formStep3">
+                    <p class="step-desc">Selecciona las materias en las que puedes dar tutorías (máx. 5)</p>
+                    <div class="materias-check-grid">
+                        <label class="materia-check"><input type="checkbox" name="materiasTutor"> 📐 Cálculo I</label>
+                        <label class="materia-check"><input type="checkbox" name="materiasTutor"> 📐 Cálculo II</label>
+                        <label class="materia-check"><input type="checkbox" name="materiasTutor"> ⚡ Física I</label>
+                        <label class="materia-check"><input type="checkbox" name="materiasTutor"> ⚡ Física II</label>
+                        <label class="materia-check"><input type="checkbox" name="materiasTutor"> 💻 Programación</label>
+                        <label class="materia-check"><input type="checkbox" name="materiasTutor"> 💻 Estructuras de Datos</label>
+                        <label class="materia-check"><input type="checkbox" name="materiasTutor"> 🧪 Química General</label>
+                        <label class="materia-check"><input type="checkbox" name="materiasTutor"> 📊 Estadística</label>
+                        <label class="materia-check"><input type="checkbox" name="materiasTutor"> ➗ Álgebra Lineal</label>
+                        <label class="materia-check"><input type="checkbox" name="materiasTutor"> 🔬 Biología</label>
+                        <label class="materia-check"><input type="checkbox" name="materiasTutor"> 🫀 Anatomía</label>
+                        <label class="materia-check"><input type="checkbox" name="materiasTutor"> ⚖️ Derecho Constitucional</label>
+                    </div>
+                    <div class="form-group" style="margin-top:20px">
+                        <label>Otra materia (opcional)</label>
+                        <input id="otraMateria" type="text" placeholder="Escribe el nombre de la materia">
+                    </div>
+                    <div class="step-buttons">
+                        <button type="button" class="btn-back" onclick="prevStep(3)">← Anterior</button>
+                        <button type="button" class="btn-next" onclick="nextStep(3)">Siguiente →</button>
+                    </div>
+                </div>
+
+                <!-- PASO 4 -->
+                <div class="form-step hidden" id="formStep4">
+                    <p class="step-desc">Indica cuándo puedes dar tutorías</p>
+                    <div class="disponibilidad-grid">
+                        <div class="dia-card">
+                            <h5>Lunes</h5>
+                            <label><input type="checkbox" name="disponibilidadTutor"> Mañana</label>
+                            <label><input type="checkbox" name="disponibilidadTutor"> Tarde</label>
+                            <label><input type="checkbox" name="disponibilidadTutor"> Noche</label>
+                        </div>
+                        <div class="dia-card">
+                            <h5>Martes</h5>
+                            <label><input type="checkbox" name="disponibilidadTutor"> Mañana</label>
+                            <label><input type="checkbox" name="disponibilidadTutor"> Tarde</label>
+                            <label><input type="checkbox" name="disponibilidadTutor"> Noche</label>
+                        </div>
+                        <div class="dia-card">
+                            <h5>Miércoles</h5>
+                            <label><input type="checkbox" name="disponibilidadTutor"> Mañana</label>
+                            <label><input type="checkbox" name="disponibilidadTutor"> Tarde</label>
+                            <label><input type="checkbox" name="disponibilidadTutor"> Noche</label>
+                        </div>
+                        <div class="dia-card">
+                            <h5>Jueves</h5>
+                            <label><input type="checkbox" name="disponibilidadTutor"> Mañana</label>
+                            <label><input type="checkbox" name="disponibilidadTutor"> Tarde</label>
+                            <label><input type="checkbox" name="disponibilidadTutor"> Noche</label>
+                        </div>
+                        <div class="dia-card">
+                            <h5>Viernes</h5>
+                            <label><input type="checkbox" name="disponibilidadTutor"> Mañana</label>
+                            <label><input type="checkbox" name="disponibilidadTutor"> Tarde</label>
+                            <label><input type="checkbox" name="disponibilidadTutor"> Noche</label>
+                        </div>
+                        <div class="dia-card">
+                            <h5>Sábado</h5>
+                            <label><input type="checkbox" name="disponibilidadTutor"> Mañana</label>
+                            <label><input type="checkbox" name="disponibilidadTutor"> Tarde</label>
+                        </div>
+                    </div>
+                    <div class="form-group" style="margin-top:20px">
+                        <label>Modalidad preferida</label>
+                        <select id="tutorModalidad">
+                            <option>Virtual (Meet/Zoom)</option>
+                            <option>Presencial</option>
+                            <option>Ambas modalidades</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label style="display:flex;align-items:center;gap:8px;font-weight:normal;cursor:pointer">
+                            <input type="checkbox" style="width:auto" required>
+                            Acepto los términos y condiciones de UniLink.
+                        </label>
+                    </div>
+                    <div class="step-buttons">
+                        <button type="button" class="btn-back" onclick="prevStep(4)">← Anterior</button>
+                        <button type="submit" class="btn-submit">🚀 Enviar postulación</button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <h3>🎓 UniLink</h3>
+                <p>Red de apoyo académico entre estudiantes de la Universidad del Magdalena.</p>
+                <br>
+                <p>© 2026 Todos los derechos reservados</p>
+            </div>
+            <div class="footer-section">
+                <h4>Enlaces</h4>
+                <a href="index.html">Inicio</a>
+                <a href="tutores.html">Tutores</a>
+                <a href="ser-tutor.html">Ser Tutor</a>
+                <a href="perfil-tutor.html">Ver Perfil</a>
+            </div>
+            <div class="footer-section">
+                <h4>Contacto</h4>
+                <p>📧 apoyo@unimagdalena.edu.co</p>
+                <p>📍 Santa Marta, Colombia</p>
+                <p>🏛️ Universidad del Magdalena</p>
+            </div>
+            <div class="footer-section">
+                <h4>Síguenos</h4>
+                <div class="social-icons">
+                    <span title="Facebook">📘</span>
+                    <span title="Instagram">📸</span>
+                    <span title="Twitter">🐦</span>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>Hecho con ❤️ por estudiantes y para estudiantes</p>
+        </div>
+    </footer>
+
+    <script src="../js/script.js"></script>
+</body>
+</html>

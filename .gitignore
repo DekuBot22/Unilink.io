@@ -1,0 +1,26 @@
+# Sistema operativo
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDEs
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# PHP
+vendor/
+*.log
+*.cache
+
+# Subidas de archivos (no versionar contenido generado)
+uploads/
+storage/
+
+# Configuración local con credenciales reales (nunca subir al repo)
+config/config.php
+
+# Variables de entorno locales (si se migrara a .env en el futuro)
+.env
+.env.local

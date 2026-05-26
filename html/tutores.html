@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutores - UniLink</title>
+    <link rel="icon" type="image/png" href="../img/LogoProyecto.png">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <a href="index.html" style="text-decoration:none;color:white;display:flex;align-items:center;gap:10px">
+                <img src="../img/LogoProyecto.png" alt="Logo UniLink" class="logo-icon logo-icon-img">
+                <div class="logo-text">
+                    <h1>UniLink</h1>
+                    <span>Universidad del Magdalena</span>
+                </div>
+            </a>
+        </div>
+        <nav>
+            <a href="index.html">Inicio</a>
+            <a href="tutores.html" class="active">Tutores</a>
+            <a href="ser-tutor.html">Ser Tutor</a>
+            <a href="perfil-tutor.html">Perfil</a>
+            <a href="index.html#contacto" class="btn-contacto">Contacto</a>
+            <button type="button" class="btn-login" data-open-auth>Iniciar sesión</button>
+        </nav>
+    </header>
+
+    <div class="modal-overlay hidden" id="authModalOverlay" role="dialog" aria-modal="true" aria-labelledby="authModalTitle">
+        <div class="modal auth-modal">
+            <button class="modal-close" type="button" data-close-auth aria-label="Cerrar">✕</button>
+
+            <section class="auth-view" data-auth-view="login">
+                <h3 id="authModalTitle">Iniciar sesión</h3>
+                <p class="auth-subtitle">Accede con tu correo y contraseña para continuar.</p>
+                <form id="loginForm" class="auth-form">
+                    <div class="form-group">
+                        <label for="loginEmail">Correo institucional *</label>
+                        <input id="loginEmail" type="email" placeholder="nombre@unimagdalena.edu.co" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="loginPassword">Contraseña *</label>
+                        <input id="loginPassword" type="password" minlength="6" placeholder="Ingresa tu contraseña" required>
+                    </div>
+                    <button type="submit" class="btn-submit">Entrar</button>
+                </form>
+                <div class="auth-links">
+                    <button type="button" class="auth-link" data-auth-target="recover">¿Olvidaste tu contraseña?</button>
+                    <button type="button" class="auth-link" data-auth-target="register">Crear cuenta</button>
+                </div>
+            </section>
+
+            <section class="auth-view hidden" data-auth-view="register">
+                <h3>Crear cuenta</h3>
+                <p class="auth-subtitle">Regístrate para buscar tutorías o brindar apoyo académico.</p>
+                <form id="registerForm" class="auth-form">
+                    <div class="form-group">
+                        <label for="registerName">Nombre completo *</label>
+                        <input id="registerName" type="text" placeholder="Tu nombre completo" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="registerEmail">Correo *</label>
+                        <input id="registerEmail" type="email" placeholder="nombre@unimagdalena.edu.co" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="registerPassword">Contraseña *</label>
+                        <input id="registerPassword" type="password" minlength="6" placeholder="Mínimo 6 caracteres" required>
+                    </div>
+                    <button type="submit" class="btn-submit">Registrarme</button>
+                </form>
+                <div class="auth-links auth-links-single">
+                    <button type="button" class="auth-link" data-auth-target="login">Ya tengo cuenta</button>
+                </div>
+            </section>
+
+            <section class="auth-view hidden" data-auth-view="recover">
+                <h3>Recuperar contraseña</h3>
+                <p class="auth-subtitle">Te enviaremos un enlace de recuperación a tu correo.</p>
+                <form id="recoverForm" class="auth-form">
+                    <div class="form-group">
+                        <label for="recoverEmail">Correo registrado *</label>
+                        <input id="recoverEmail" type="email" placeholder="nombre@unimagdalena.edu.co" required>
+                    </div>
+                    <button type="submit" class="btn-submit">Enviar enlace</button>
+                </form>
+                <div class="auth-links auth-links-single">
+                    <button type="button" class="auth-link" data-auth-target="login">Volver al inicio de sesión</button>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- BUSCADOR -->
+    <section class="buscar-hero">
+        <h2>🔍 Encuentra tu tutor ideal</h2>
+        <p>Más de 150 tutores listos para ayudarte</p>
+        <div class="buscador-bar">
+            <input type="text" id="searchInput" placeholder="Busca por nombre, materia o carrera...">
+            <select id="filterMateria">
+                <option value="">Todas las materias</option>
+                <option value="calculo">Cálculo</option>
+                <option value="fisica">Física</option>
+                <option value="programacion">Programación</option>
+                <option value="quimica">Química</option>
+                <option value="estadistica">Estadística</option>
+                <option value="biologia">Biología</option>
+                <option value="derecho">Derecho</option>
+                <option value="algebra">Álgebra</option>
+            </select>
+            <select id="filterCarrera">
+                <option value="">Todas las carreras</option>
+                <option value="sistemas">Ing. de Sistemas</option>
+                <option value="medicina">Medicina</option>
+                <option value="derecho">Derecho</option>
+                <option value="civil">Ing. Civil</option>
+                <option value="administración">Administración</option>
+                <option value="biología">Biología</option>
+            </select>
+            <button onclick="filtrarTutores()">🔍 Buscar</button>
+        </div>
+    </section>
+
+    <!-- RESULTADOS -->
+    <section class="tutores-page">
+        <div class="resultados-header">
+            <p id="resultadosCount">Cargando tutores...</p>
+            <select id="sortBy" onchange="filtrarTutores()">
+                <option value="rating">Mejor calificación</option>
+                <option value="sesiones">Más sesiones</option>
+                <option value="nombre">Nombre A-Z</option>
+            </select>
+        </div>
+        <div class="tutores-lista" id="tutoresLista"></div>
+    </section>
+
+    <!-- MODAL AGENDAR -->
+    <div class="modal-overlay hidden" id="modalAgendar">
+        <div class="modal">
+            <button class="modal-close" onclick="cerrarModal()">✕</button>
+            <h3>📅 Agendar sesión con <span id="modalNombreTutor"></span></h3>
+            <form onsubmit="confirmarSesion(event)">
+                <div class="form-group">
+                    <label>Tu nombre completo *</label>
+                    <input type="text" placeholder="Nombre completo" required>
+                </div>
+                <div class="form-group">
+                    <label>Materia *</label>
+                    <select required>
+                        <option value="">Selecciona materia</option>
+                        <option>Cálculo I</option>
+                        <option>Cálculo II</option>
+                        <option>Programación</option>
+                        <option>Física I</option>
+                        <option>Física II</option>
+                        <option>Química</option>
+                        <option>Estadística</option>
+                        <option>Biología</option>
+                        <option>Álgebra Lineal</option>
+                        <option>Derecho Constitucional</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Fecha *</label>
+                    <input type="date" required>
+                </div>
+                <div class="form-group">
+                    <label>Hora *</label>
+                    <input type="time" required>
+                </div>
+                <div class="form-group">
+                    <label>Modalidad</label>
+                    <select>
+                        <option>Virtual (Meet/Zoom)</option>
+                        <option>Presencial - Biblioteca Unimagdalena</option>
+                        <option>Presencial - Cafetería central</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Describe tu duda o tema</label>
+                    <textarea placeholder="Ej: Necesito ayuda con integrales dobles..." rows="3"></textarea>
+                </div>
+                <button type="submit" class="btn-submit">✅ Confirmar sesión</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <h3>🎓 UniLink</h3>
+                <p>Red de apoyo académico entre estudiantes de la Universidad del Magdalena.</p>
+                <br>
+                <p>© 2026 Todos los derechos reservados</p>
+            </div>
+            <div class="footer-section">
+                <h4>Enlaces</h4>
+                <a href="index.html">Inicio</a>
+                <a href="tutores.html">Tutores</a>
+                <a href="ser-tutor.html">Ser Tutor</a>
+                <a href="perfil-tutor.html">Ver Perfil</a>
+            </div>
+            <div class="footer-section">
+                <h4>Contacto</h4>
+                <p>📧 apoyo@unimagdalena.edu.co</p>
+                <p>📍 Santa Marta, Colombia</p>
+                <p>🏛️ Universidad del Magdalena</p>
+            </div>
+            <div class="footer-section">
+                <h4>Síguenos</h4>
+                <div class="social-icons">
+                    <span title="Facebook">📘</span>
+                    <span title="Instagram">📸</span>
+                    <span title="Twitter">🐦</span>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>Hecho con ❤️ por estudiantes para estudiantes</p>
+        </div>
+    </footer>
+
+    <script src="../js/script.js"></script>
+</body>
+</html>
