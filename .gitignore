@@ -21,12 +21,6 @@ storage/
 # Variables de entorno locales (si se migrara a .env en el futuro)
 .env
 .env.local
-node_modules/
 
 # Configuracion local con credenciales (no versionar)
 config/config.php
-
-# Archivos de herramientas locales
-.claude/
-package.json
-package-lock.json
