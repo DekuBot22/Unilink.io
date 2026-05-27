@@ -8,19 +8,18 @@ RUN apt-get update && apt-get install -y \
 # Extensiones PHP necesarias
 RUN docker-php-ext-install pdo pdo_mysql mysqli mbstring
 
-# Forzar solo mpm_prefork (requerido por mod_php); eliminar symlinks de otros MPMs
-RUN rm -f /etc/apache2/mods-enabled/mpm_event.conf \
-          /etc/apache2/mods-enabled/mpm_event.load \
-          /etc/apache2/mods-enabled/mpm_worker.conf \
-          /etc/apache2/mods-enabled/mpm_worker.load \
-    && ls /etc/apache2/mods-enabled/mpm_prefork.load > /dev/null 2>&1 \
-    || ln -s /etc/apache2/mods-available/mpm_prefork.load /etc/apache2/mods-enabled/mpm_prefork.load
-
-# Habilitar mod_rewrite
+# Habilitar mod_rewrite y permitir .htaccess
 RUN a2enmod rewrite
-
-# Permitir .htaccess
 RUN sed -i 's/AllowOverride None/AllowOverride All/g' /etc/apache2/apache2.conf
+
+# Forzar solo mpm_prefork DESPUES de todos los a2enmod
+# (elimina todos, luego crea solo prefork con ln -s forzado)
+RUN cd /etc/apache2/mods-enabled \
+    && rm -f mpm_event.conf mpm_event.load mpm_worker.conf mpm_worker.load mpm_prefork.conf mpm_prefork.load \
+    && ln -s ../mods-available/mpm_prefork.load mpm_prefork.load \
+    && ln -s ../mods-available/mpm_prefork.conf mpm_prefork.conf \
+    && echo "=== MPM after fix ===" \
+    && ls mpm_*.* 2>&1
 
 # Copiar archivos del proyecto
 COPY . /var/www/html/
@@ -29,8 +28,8 @@ COPY . /var/www/html/
 RUN chown -R www-data:www-data /var/www/html \
     && chmod -R 755 /var/www/html
 
-# Script de arranque: ajusta el puerto al $PORT que Railway asigna en runtime
-RUN printf '#!/bin/bash\nPORT=${PORT:-80}\nsed -i "s/Listen 80/Listen $PORT/" /etc/apache2/ports.conf\nsed -i "s/<VirtualHost \\*:80>/<VirtualHost *:$PORT>/" /etc/apache2/sites-enabled/000-default.conf\nexec apache2-foreground\n' > /start.sh \
+# Script de arranque con diagnostico
+RUN printf '#!/bin/bash\necho "=== MPM en arranque ==="\nls /etc/apache2/mods-enabled/mpm_* 2>&1\necho "======================"\nPORT=${PORT:-80}\nsed -i "s/Listen 80/Listen $PORT/" /etc/apache2/ports.conf\nsed -i "s/<VirtualHost \\*:80>/<VirtualHost *:$PORT>/" /etc/apache2/sites-enabled/000-default.conf\nexec apache2-foreground\n' > /start.sh \
     && chmod +x /start.sh
 
 CMD ["/start.sh"]
