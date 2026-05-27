@@ -8,9 +8,15 @@ RUN apt-get update && apt-get install -y \
 # Extensiones PHP necesarias
 RUN docker-php-ext-install pdo pdo_mysql mysqli mbstring
 
-# Habilitar mod_rewrite; forzar un solo MPM (prefork es requerido por mod_php)
-RUN a2dismod mpm_event mpm_worker 2>/dev/null || true
-RUN a2enmod mpm_prefork
+# Forzar solo mpm_prefork (requerido por mod_php); eliminar symlinks de otros MPMs
+RUN rm -f /etc/apache2/mods-enabled/mpm_event.conf \
+          /etc/apache2/mods-enabled/mpm_event.load \
+          /etc/apache2/mods-enabled/mpm_worker.conf \
+          /etc/apache2/mods-enabled/mpm_worker.load \
+    && ls /etc/apache2/mods-enabled/mpm_prefork.load > /dev/null 2>&1 \
+    || ln -s /etc/apache2/mods-available/mpm_prefork.load /etc/apache2/mods-enabled/mpm_prefork.load
+
+# Habilitar mod_rewrite
 RUN a2enmod rewrite
 
 # Permitir .htaccess
