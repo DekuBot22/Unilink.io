@@ -21,3 +21,4 @@ storage/
 # Variables de entorno locales (si se migrara a .env en el futuro)
 .env
 .env.local
+node_modules/
