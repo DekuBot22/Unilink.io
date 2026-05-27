@@ -18,9 +18,6 @@ vendor/
 uploads/
 storage/
 
-# Configuración local con credenciales reales (nunca subir al repo)
-config/config.php
-
 # Variables de entorno locales (si se migrara a .env en el futuro)
 .env
 .env.local
