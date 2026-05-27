@@ -16,8 +16,8 @@ COPY . /var/www/html/
 RUN chown -R www-data:www-data /var/www/html \
     && chmod -R 755 /var/www/html
 
-# Script de arranque: ajusta el puerto de Apache al $PORT que Railway asigna
-COPY docker-start.sh /docker-start.sh
-RUN chmod +x /docker-start.sh
+# Crear script de arranque directamente en Linux (evita problemas de CRLF en Windows)
+RUN printf '#!/bin/bash\nPORT=${PORT:-80}\nsed -i "s/Listen 80/Listen $PORT/" /etc/apache2/ports.conf\nsed -i "s/<VirtualHost \\*:80>/<VirtualHost *:$PORT>/" /etc/apache2/sites-enabled/000-default.conf\nexec apache2-foreground\n' > /start.sh \
+    && chmod +x /start.sh
 
-CMD ["/docker-start.sh"]
+CMD ["/start.sh"]
